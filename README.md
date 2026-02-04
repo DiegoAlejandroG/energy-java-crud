@@ -1,18 +1,43 @@
-## Getting Started
+# 🌱 Energy Transition Management System
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Java console-based application to manage and analyze renewable energy production data, developed as part of a backend learning process.
 
-## Folder Structure
+## 🚀 Project Overview
+This project simulates a system that allows users to manage renewable energy records by region, country, energy source, and year.  
+It focuses on **Object-Oriented Programming**, **clean architecture**, and **CRUD operations**, serving as a foundation for future integration with databases and REST APIs.
 
-The workspace contains two folders by default, where:
+## 🛠️ Technologies Used
+- Java (OOP)
+- Collections (List, Iterator)
+- Console-based UI
+- Git & GitHub
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## 📌 Features
+- Add energy production records
+- List all records
+- Update records (full edit or production-only)
+- Delete records safely using Iterator
+- Calculate total energy production by year
+- Menu-driven console interaction
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## 🧠 Architecture
+src/
+├── model/ → Domain entities (EnergyRecord, Region, Country, EnergySource)
+├── service/ → Business logic and data handling
+└── App.java → Application entry point (UI + flow control)
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## ▶️ How to Run
+1. Clone the repository  
+2. Open in your Java IDE (IntelliJ / Eclipse / VS Code)
+3. Run `App.java`
+4. Use the console menu to interact with the system
 
-## Dependency Management
+## 🔮 Future Improvements
+- Database integration (MySQL + JPA)
+- Spring Boot REST API
+- Frontend integration (Angular)
+- Data visualization
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+---
+
+💡 *This project is part of my journey into backend development and will continue evolving.*
