@@ -1,23 +1,24 @@
 package service;
+
 import java.util.List;
 import model.Country;
 import model.EnergyRecord;
 import model.EnergySource;
-import java.util.ArrayList;
-import java.util.Iterator;
+import repository.EnergyRepository;
 
 
 public class EnergyService {
+    
     // In-memory storage for energy records
-    private List<EnergyRecord> records = new ArrayList<>();
+    private EnergyRepository repository = new EnergyRepository();
     private int nextId = 1;
     
     // Constructor
     public EnergyService() {
-        this.records = new ArrayList<>();
+        this.repository = new EnergyRepository();
     }
 
-    // Method to add a new energy record
+    // Method to add/create a new energy record
     public boolean addRecord(model.Region region, Country country, EnergySource source, int year, double production) {
 
     if (region == null || country == null || source == null) {
@@ -36,28 +37,23 @@ public class EnergyService {
     }
 
     EnergyRecord record = new EnergyRecord(nextId++, region, country, source, year, production);
-    records.add(record);
+    repository.save(record);
     return true;
 }
    
-    // Method to retrieve(return) all energy records
+    // Method to retrieve(return/list) all energy records
     public List<EnergyRecord> getAllRecords() {
-        return records;
+        return repository.findAll();
     }
     // Method to find a record by ID
     public EnergyRecord findById(int id) {
-    for (EnergyRecord record : records) {
-        if (record.getId() == id) {
-            return record;
-        }
+        return repository.findById(id);
     }
-    return null;
-}
 
     // Method to calculate total energy production for a specific year
     public double getTotalProductionByYear(int year) {
         double total = 0;
-        for (EnergyRecord record : records) {
+        for (EnergyRecord record : repository.findAll()) {
             if (record.getYear() == year) {
                 total += record.getProduction();
             }
@@ -72,7 +68,7 @@ public class EnergyService {
         return false;
     }
 
-    EnergyRecord record = findById(id);
+    EnergyRecord record = repository.findById(id);
 
     if (record != null) {
         record.setProduction(newProduction);
@@ -87,7 +83,7 @@ public class EnergyService {
         System.out.println("Invalid year.");
         return false;
     }
-    EnergyRecord record = findById(id);
+    EnergyRecord record = repository.findById(id);
 
     if (record != null) {
         record.setYear(newYear);
@@ -98,18 +94,7 @@ public class EnergyService {
 }
     // Method to delete a record by ID
     public boolean deleteById(int id) {
-    Iterator<EnergyRecord> iterator = records.iterator();
-
-    while (iterator.hasNext()) {
-        EnergyRecord record = iterator.next();
-
-        if (record.getId() == id) {
-            iterator.remove();
-            return true;
-        }
-    }
-
-    return false;
+        return repository.deleteById(id);
     }
 
     
