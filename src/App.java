@@ -3,6 +3,7 @@ import service.EnergyService;
 import model.EnergySource;
 import model.Country;
 import model.EnergyRecord;
+import model.Region;
 
 public class App {
     public static void main(String[] args) {
@@ -46,11 +47,18 @@ public class App {
                     System.out.print("Enter Production value: ");
                     double production = scanner.nextDouble();
 
-                    model.EnergyRecord record = new EnergyRecord(new model.Region(regionName),
-                            new Country(countryName, null), new EnergySource(sourceName, "Renewable"), year,
+                    boolean created = energyService.addRecord(
+                            new Region(regionName),
+                            new Country(countryName, null),
+                            new EnergySource(sourceName, "Renewable"),
+                            year,
                             production);
-                    energyService.addRecord(record);
-                    System.out.println("Energy Record Added Successfully!");
+
+                    if (created) {
+                        System.out.println("Energy Record Added Successfully!");
+                    } else {
+                        System.out.println("Error: Invalid data. Record not created.");
+                    }
 
                     break;
 
@@ -118,7 +126,7 @@ public class App {
                     if (updated) {
                         System.out.println("Record updated successfully.");
                     } else {
-                        System.out.println("Record not found.");
+                        System.out.println("Error: Record not found or invalid data.");
                     }
                     break;
 

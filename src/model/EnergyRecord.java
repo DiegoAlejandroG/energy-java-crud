@@ -1,6 +1,7 @@
 package model;
 
 public class EnergyRecord {
+
     private int id;
     private Region region;
     private Country country;
@@ -8,18 +9,18 @@ public class EnergyRecord {
     private int year;
     private double production;
 
-    public EnergyRecord(Region regionName, Country country, EnergySource energySource, int year, double production) {
-        // Initialize all fields
-        this.region = regionName;
+    public EnergyRecord(int id, Region region, Country country, EnergySource energySource, int year, double production) {
+        this.id = id;
+        this.region = region;
         this.country = country;
         this.energySource = energySource;
         this.year = year;
         this.production = production;
     }
 
-    public void setId(int id) {
+    /* public void setId(int id) {
         this.id = id;
-    }
+    } */
 
     public int getId() {
         return id;
